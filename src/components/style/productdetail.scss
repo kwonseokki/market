@@ -3,7 +3,7 @@
         width: 100%;
         min-height: 500px;
         max-height: 700px;
-        background: red;
+        background:gray;
     }
 
     .product-detail-user {
@@ -22,6 +22,11 @@
         flex-direction: column;
         align-items: flex-start;
         padding:5px;
+        .product-user-price {
+            width:100%;
+            display:flex;
+            justify-content: space-between;
+        }
     }
 
     .product-user-icon {
@@ -31,7 +36,10 @@
     }
 
     .product-detail-content {
-        min-height:500px;
-        max-height:700px;
+        min-height: 500px;
+        max-height: 700px;
+        word-break: keep-all;
+        text-align: left;
+        padding: 10px;
     }
 }

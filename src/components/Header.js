@@ -5,8 +5,12 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useSelector, useDispatch } from "react-redux";
+import { loggedOut } from "../modules/authUser";
 
 const Header = () => {
+  const user = useSelector(state=>state.authReducer);
+  const dispatch = useDispatch();
     return (
         <Navbar bg="light" expand="lg">
         <Container fluid>
@@ -25,23 +29,21 @@ const Header = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success">search</Button>
             </Form>
             <Nav.Link href="#action1">장바구니</Nav.Link>
-              <Nav.Link href="#action1">로그인</Nav.Link>
-              <Nav.Link href="#action2">회원가입</Nav.Link>
-          {/* 
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
-        */}
+            {user.isLogin ?  <NavDropdown title={user.displayName} id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">내 상품</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+               내 채팅
+              </NavDropdown.Item>
+           
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={()=>{dispatch(loggedOut)}}>
+                 로그아웃
+              </NavDropdown.Item>
+            </NavDropdown> : <><Nav.Link href="#action1">로그인</Nav.Link>
+              <Nav.Link href="#action2">회원가입</Nav.Link></>}
           
             </Nav>
           

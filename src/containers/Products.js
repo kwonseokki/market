@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProductItem } from '../components';
+import { Link } from 'react-router-dom';
 const Products = ({products}) => {
     return (
         <div className='container'>
-         {products.map(product=>(
-           <ProductItem product={product} key={product.id} />
+         {products.map((product, index)=>(
+          <Link to={`/detail/${product.id}`}><ProductItem product={product} key={index}/></Link>
          ))}
         </div>
     )
