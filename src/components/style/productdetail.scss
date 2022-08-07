@@ -1,0 +1,37 @@
+.product-detail {
+    .product-detail-image {
+        width: 100%;
+        min-height: 500px;
+        max-height: 700px;
+        background: red;
+    }
+
+    .product-detail-user {
+        padding: 10px;
+        display: flex;
+
+        .product-user-image {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .product-user-text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding:5px;
+    }
+
+    .product-user-icon {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .product-detail-content {
+        min-height:500px;
+        max-height:700px;
+    }
+}
