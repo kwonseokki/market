@@ -16,11 +16,11 @@ export const getData = async (collection) => {
   return data;
 };
 
-export const queryData = async (collection, docId) => {
+export const queryData = async (collection, query) => {
   const data = new Array();
   await db
     .collection(collection)
-    .where("id", "==", docId)
+    .where(query.filed, query.operator, query.value)
     .get()
     .then((docs) => {
       docs.forEach((doc) => data.push(doc.data()));
@@ -29,12 +29,19 @@ export const queryData = async (collection, docId) => {
 };
 
 // 상품 업로드
-export const uploadData = async (collection, data, url, uid) => {
+export const uploadData = async (collection, data, url, uid, displayName) => {
   const uniqueId = uuidv4();
   await db
     .collection(collection)
     .doc(uniqueId)
-    .set({ ...data, id: uniqueId, url, uid });
+    .set({
+      ...data, 
+      id:uniqueId, 
+      url, 
+      uid,
+      date:new Date(),
+      displayName
+    });
 };
 
 // url 등록 주소값 반환해주는 함수
@@ -49,10 +56,54 @@ export const getUrl = async (url) => {
 };
 
 export const deleteData = async (collection, docId) => {
-
   const res = await db
   .collection(collection)
   .doc(docId)
   .delete();
   return res;
 };
+
+// 채팅방생성/문서id 리턴
+export const createChatRoom = async (postData) => {
+  const { uid:postUid, userUid, title, content, url} = postData; // postUid:상대 userUid:현재접속자
+  const uniqueId = userUid+postUid;
+  await db.
+  collection('chatroom')
+  .doc(uniqueId)
+  .set({
+    postData,
+    who:[userUid, postUid],
+    id:uniqueId
+  });
+  return uniqueId;
+}
+
+export const sendChatMessage = async (e, chatId, message, uid) => {
+  e.preventDefault();
+  await db
+  .collection('chatroom')
+  .doc(chatId)
+  .collection('message')
+  .add({
+    message,
+    uid,
+    date:new Date()
+  })
+}
+
+export const snapShotChat = async (chatId, setChatData) => {
+   db
+  .collection('chatroom')
+  .doc(chatId)
+  .collection('message')
+  .orderBy('date')
+  .onSnapshot(
+  snapshot=>{
+    const list = new Array();
+    snapshot.forEach(result=>{
+    list.push(result.data());
+    })
+    setChatData(list);
+  })
+
+}

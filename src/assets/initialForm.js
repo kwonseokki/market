@@ -7,5 +7,4 @@ export const initialForm = {
     parse_content:'내용',
     price:1000,
     title:'상품명',
-    url:''
 }

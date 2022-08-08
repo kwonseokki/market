@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ProductItem } from '../components';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 const Products = ({products}) => {
+  const history = useHistory();
     return (
-        <div className='container'>
+        <div bg="dark" className='item-container  container product-container'>
          {products.map((product, index)=>(
-          <Link to={`/detail/${product.id}`}><ProductItem product={product} key={index}/></Link>
+          <article onClick={()=>{history.push(`/detail/${product.id}`)}}><ProductItem product={product} key={index}/></article>
          ))}
         </div>
     )

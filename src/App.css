@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+Link{outline:0; text-decoration:none;}
+
+.item-container {
+  height:calc( 100vh - 112px );
+  overflow-y:scroll;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
