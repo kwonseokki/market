@@ -1,0 +1,27 @@
+.item-container {
+
+    .search-result-text {
+        color:gray;
+        margin:0 20px;
+    }
+
+    .search-list {
+        margin:0;
+        padding:0;   
+    }
+
+  .product-item-container {
+      display:flex;
+      align-items: center;
+      margin-top:10px;
+      .product-item-image {
+          width:135px;
+          height:135px;
+          border-radius:10px;
+          overflow: hidden;
+      }
+      .product-item-text {
+          padding:10px;
+      }
+  }
+}

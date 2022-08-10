@@ -5,7 +5,6 @@ import { queryData } from "../lib/api";
 import { useFetch } from "../hooks/useAsync";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteData } from "../lib/api";
 import noUserImage from "../assets/no-user-image.png";
 import noImage from "../assets/no-image.jpg";
 import {Loading} from './index';
@@ -47,7 +46,7 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
   const { uid } = user;
   const { loading, error, data } = state;
   const history = useHistory();
-
+  console.log(state);
   const isChatRomm = async () => {
     const response = await queryData('chatroom', {
       filed:'who', 
@@ -64,7 +63,7 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
   if (loading) return (<Loading message={'상품정보 가져오는중'}/>);
   if (error) return <div>에러발생</div>;
   if (!data) return null;
-  console.log(data);
+ 
   return (
     <div className="item-container product-detail container">
       <div className="product-detail-image">
@@ -101,13 +100,14 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
       ) : null}
 
       <div className="product-detail-content">{data[0].content}</div>
-
-      <button onClick={()=>{isChatRomm()}}
+        {uid &&   <button onClick={()=>{isChatRomm()}}
         type="submit"
         class="text-white bg-orange-300   font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900"
       >
         채팅하기
       </button>
+        }
+    
     </div>
   );
 };

@@ -6,6 +6,7 @@ export const getData = async (collection) => {
   const data = new Array();
   await db
     .collection(collection)
+    .orderBy('date', 'desc')
     .get()
     .then((snapshot) => {
       snapshot.forEach((result) => {
@@ -18,6 +19,8 @@ export const getData = async (collection) => {
 
 export const queryData = async (collection, q) => {
   const data = new Array();
+  console.log(collection);
+  console.log(q);
   await db
     .collection(collection)
     .where(q.filed, q.operator, q.value)

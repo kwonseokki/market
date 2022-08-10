@@ -14,7 +14,7 @@ const SelectLocation = ({ region, setRegion }) => {
   return (
     <Menu as="div" className="relative inline-block text-left text-base">
       <div>
-        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-white p-2.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-white p-2.5 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
           {region}지역 검색
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
@@ -80,7 +80,7 @@ const Header = ({ location }) => {
     return (<div className="text-base p-2.5">마이페이지+
     </div>);
   }
-  return (<SelectLocation setRegion={setRegion} region={region}/>)
+  return (<div onClick={()=>{history.push('/')}} className="text-base p-2.5 header-logo">석기마켓</div>)
   };
   return (
     <header className="header-container container-fluid">

@@ -18,13 +18,12 @@ import { Route } from "react-router-dom";
 import { Switch, useHistory } from "react-router-dom";
 import { useInput } from "./hooks/useInput";
 import { initialForm } from "./assets/initialForm";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteData } from "./lib/api";
 
 function App() {
   const user = useSelector((state) => state.authReducer);
-  const { displayName, uid, url:userImage } = user;
+  const { displayName, uid, url: userImage } = user;
   const [toggle, setToggle] = useState(false);
   const [state] = useFetch(getData("product"), [toggle]);
   const { loading, error, data } = state;
@@ -56,12 +55,16 @@ function App() {
     setToggle(!toggle);
     history.push("/");
   };
-
+  // 채팅방생성
   const createChat = async (postData) => {
     const userUid = uid;
     const response = await createChatRoom({ ...postData, userUid });
+    console.log(`${response} 응답채팅번호`);
     history.push(`/chatroom/${response}`);
   };
+
+  // 상품검색
+  
 
   useEffect(() => {}, [loggedIn]);
 

@@ -6,7 +6,6 @@ const ChatRoom = ({ props }) => {
   console.log(props);
   const chatId = props.match.params.docid;
   const state = useSelector((state) => state.authReducer);
-  const userName = props.location.props[0].name;
   const { uid } = state;
   const [message, setMessage] = useState();
   const [chatData, setChatData] = useState();
@@ -20,7 +19,7 @@ const ChatRoom = ({ props }) => {
 
   return (
     <div className="item-container">
-     <span className="chatroom-start-text"><span>{userName} 님과 채팅을 시작합니다.</span></span>
+     <span className="chatroom-start-text"><span>채팅을 시작합니다.</span></span>
     <ul className="chatroom-message-container">
         {chatData !== undefined && chatData.map((chat) => (
          uid === chat.uid ? 

@@ -1,8 +1,13 @@
 import React from "react";
 import '../components/style/upload.scss';
 import { category, locations } from "../assets/category";
+import { useSelector } from "react-redux";
+import { PageRock } from "../components";
 const Upload = ({onChange, onSubmit, selecteImage}) => {
-  return (
+    const user = useSelector(state=>state.authReducer); 
+    const {uid} = user;
+    if(!uid) return (<PageRock/>);
+     return (
     <div className="item-container container product-upload">
         <form onSubmit={onSubmit}>
         {/* title */}
