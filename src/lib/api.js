@@ -16,11 +16,11 @@ export const getData = async (collection) => {
   return data;
 };
 
-export const queryData = async (collection, query) => {
+export const queryData = async (collection, q) => {
   const data = new Array();
   await db
     .collection(collection)
-    .where(query.filed, query.operator, query.value)
+    .where(q.filed, q.operator, q.value)
     .get()
     .then((docs) => {
       docs.forEach((doc) => data.push(doc.data()));
@@ -29,7 +29,7 @@ export const queryData = async (collection, query) => {
 };
 
 // 상품 업로드
-export const uploadData = async (collection, data, url, uid, displayName) => {
+export const uploadData = async (collection, data, url, uid, displayName, userImage) => {
   const uniqueId = uuidv4();
   await db
     .collection(collection)
@@ -40,15 +40,16 @@ export const uploadData = async (collection, data, url, uid, displayName) => {
       url, 
       uid,
       date:new Date(),
-      displayName
+      displayName,
+      userImage
     });
 };
 
 // url 등록 주소값 반환해주는 함수
-export const getUrl = async (url) => {
+export const getUrl = async (url, path='image/') => {
   if (url) {
     const storageRef = storage.ref();
-    const savePath = storageRef.child("image/" + url.name);
+    const savePath = storageRef.child( path + url.name);
     const uploadTaskSnapshot = await savePath.put(url);
     const downloadURL = await uploadTaskSnapshot.ref.getDownloadURL();
     return downloadURL;
@@ -78,6 +79,7 @@ export const createChatRoom = async (postData) => {
   return uniqueId;
 }
 
+// 메세지 보내기
 export const sendChatMessage = async (e, chatId, message, uid) => {
   e.preventDefault();
   await db
@@ -90,7 +92,7 @@ export const sendChatMessage = async (e, chatId, message, uid) => {
     date:new Date()
   })
 }
-
+// 채팅방 데이터 실시간으로 가져오기
 export const snapShotChat = async (chatId, setChatData) => {
    db
   .collection('chatroom')
@@ -105,5 +107,5 @@ export const snapShotChat = async (chatId, setChatData) => {
     })
     setChatData(list);
   })
-
 }
+

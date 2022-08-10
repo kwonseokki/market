@@ -1,40 +1,80 @@
 .item-container {
+
+    .chatroom-start-text {
+        display:block;
+        margin-top:10px;
+        display:flex;
+        justify-content:space-around;
+        span {
+            padding:5px 10px;
+            background:lightgray;
+            border-radius:20px;
+            font-size:0.8rem;
+            color:white
+        }
+    }
+
     .chatroom-send-input {
-        width:100%;
-        height:56px;
-        position:absolute;
-        bottom:0;
-        left:0;
-        z-index:10000;
-        padding:5px;
-        background:white;
+        width: 100%;
+        height: 56px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 10000;
+        padding: 5px;
+        background: white;
+    }
+
+    .chatroom-message-container {
+        li {
+
+            margin-top: 10px;
+
+
+            span {
+                background: lightgray;
+                padding: 5px 10px;
+                color: white;
+                border-radius: 10px;
+            }
+        }
+
+        li.message-right {
+            text-align: right;
+        }
+
+        li.message-left {
+            text-align: left;
+        }
     }
 
     .chatroom-input-group {
-            width:100%;
-            height:100%;
-            background:#F2F2F2;
-            border-radius:25px;
-            position:relative;
-            input {
-                position:absolute;
-                left:10px;
-                width:calc( 100% - 100px );
-                height:100%;
-                background:none;
-                border:none;
-            }
-            button {
-                position:absolute;
-                width:90px;
-                height:100%;
-                background:orange;
-                border:none;
-                color:white;
-                right:0;
-                padding:5px;
-                border-radius:25px;
-                z-index:9999;
-            }
+        width: 100%;
+        height: 100%;
+        background: #F2F2F2;
+        border-radius: 25px;
+        position: relative;
+
+        input {
+            position: absolute;
+            left: 10px;
+            width: calc(100% - 100px);
+            height: 100%;
+            background: none;
+            border: none;
+        }
+
+        button {
+            position: absolute;
+            width: 90px;
+            height: 100%;
+            background: #FDBA74;
+            border: none;
+            color: white;
+            right: 0;
+            padding: 5px;
+            border-radius: 25px;
+            z-index: 9999;
+        }
     }
 }

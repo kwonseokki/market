@@ -18,6 +18,7 @@ export default function authReducer(state=initialState, action) {
             email:action.payload.email,
             uid:action.payload.uid,
             displayName:action.payload.displayName,
+            url:action.payload.url,
             isLogin:true
         }
         case LOGGEDOUT : 

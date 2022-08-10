@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  position: relative;
+  max-width: 425px;
+  height:100vh;
+  margin: 0 auto;
 }
 
 Link{outline:0; text-decoration:none;}
@@ -7,6 +11,7 @@ Link{outline:0; text-decoration:none;}
 .item-container {
   height:calc( 100vh - 112px );
   overflow-y:scroll;
+  margin:0 20px;
 }
 
 .App-logo {

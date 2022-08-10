@@ -8,6 +8,8 @@ import { useHistory } from "react-router-dom";
 import { deleteData } from "../lib/api";
 import noUserImage from "../assets/no-user-image.png";
 import noImage from "../assets/no-image.jpg";
+import {Loading} from './index';
+
 const ModifyButton = ({ docId, onDelete }) => {
   const history = useHistory();
   return (
@@ -42,12 +44,27 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
   const docId = match.params.docid;
   const [state] = useFetch(queryData("product", {filed:'id',operator:'==', value:docId}), []);
   const user = useSelector((state) => state.authReducer);
+  const { uid } = user;
   const { loading, error, data } = state;
+  const history = useHistory();
 
-  if (loading) return <div>데이터 가져오는중...</div>;
+  const isChatRomm = async () => {
+    const response = await queryData('chatroom', {
+      filed:'who', 
+      operator:'array-contains', 
+      value:[uid, data[0].uid]
+    });
+    if(response.length >= 1) {
+      history.push(`/chatroom/${response[0].id}`);
+    } else {
+      createChat(data[0]);
+    }
+  }
+
+  if (loading) return (<Loading message={'상품정보 가져오는중'}/>);
   if (error) return <div>에러발생</div>;
   if (!data) return null;
-
+  console.log(data);
   return (
     <div className="item-container product-detail container">
       <div className="product-detail-image">
@@ -56,10 +73,7 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
       <div className="product-detail-user">
         <div
           className="product-user-image"
-          style={{
-            background: `url(${noUserImage}) center center`,
-            backgroundSize: "cover",
-          }}
+        style={data[0].userImage  ? {background:`url(${data[0].userImage})`} : {background:`url(${noUserImage}) center center`}}
         ></div>
 
         <div className="product-user-text">
@@ -75,6 +89,7 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
           </div>
         </div>
       </div>
+      <hr/>
       <div className="product-info">
         <h2>{data[0].title}</h2>
         <p>
@@ -87,7 +102,7 @@ const ProductDetail = ({ props, onDelete, createChat}) => {
 
       <div className="product-detail-content">{data[0].content}</div>
 
-      <button onClick={()=>{createChat(data[0])}}
+      <button onClick={()=>{isChatRomm()}}
         type="submit"
         class="text-white bg-orange-300   font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900"
       >

@@ -3,8 +3,10 @@ import "./style/chatroom.scss";
 import { sendChatMessage, snapShotChat } from "../lib/api";
 import { useSelector } from "react-redux";
 const ChatRoom = ({ props }) => {
+  console.log(props);
   const chatId = props.match.params.docid;
   const state = useSelector((state) => state.authReducer);
+  const userName = props.location.props[0].name;
   const { uid } = state;
   const [message, setMessage] = useState();
   const [chatData, setChatData] = useState();
@@ -18,17 +20,12 @@ const ChatRoom = ({ props }) => {
 
   return (
     <div className="item-container">
-      <span style={{ fontSize: "0.7rem" }}> 채팅방아디:{chatId}</span>
-      <button
-        type="button"
-        class="text-gray=500 bg-gray-200  focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1.5 text-center mr-2 mb-2"
-      >
-        님과의 채팅이 시작되었습니다.
-      </button>
-        
-    <ul>
+     <span className="chatroom-start-text"><span>{userName} 님과 채팅을 시작합니다.</span></span>
+    <ul className="chatroom-message-container">
         {chatData !== undefined && chatData.map((chat) => (
-          <li>{chat.message}</li>
+         uid === chat.uid ? 
+         <li className="message-right"><span className="chatroom-message">{chat.message}</span></li> :
+         <li className="message-left"><span className="chatroom-message">{chat.message}</span></li>
         ))}
       </ul>
       

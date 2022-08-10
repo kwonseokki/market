@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');.header-container {
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .header-logo {
+        font-family: 'Jua', sans-serif;
+        color:#FDBA74;
+        font-size:1.2rem;
+    }
+}

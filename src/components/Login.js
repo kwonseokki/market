@@ -16,12 +16,15 @@ const Login = ({setLoggedIn}) => {
         e.preventDefault();
        try {
            setMsg('로그인성공');
+           
            await signIn(form)
            .then(result=>{
+            console.log(result.user);
            dispatch(loggedIn({
                ...form, 
                uid:result.user.uid, 
-               displayName:result.user.displayName
+               displayName:result.user.displayName,
+               url:result.user.photoURL, 
             }));
            setLoggedIn(true);
            history.push('/');
@@ -34,17 +37,15 @@ const Login = ({setLoggedIn}) => {
        }
     }
     return (
-        <div>
+        <div className="item-container" style={{overflow:'hidden'}}>
 <body class="antialiased">
-    <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+    <div class="max-w-lg mx-auto  bg-white p-8 rounded-xl">
         <h1 class="text-4xl font-medium">로그인</h1>
         {msg}
         <p class="text-slate-500"></p>
 
         <div class="my-5">
-            <button class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
-                <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-6 h-6" alt=""/> <span>Login with Google</span>
-            </button>
+           
         </div>
         <form onSubmit={(e)=>{onMemberSignIn(e)}}  class="my-10">
             <div class="flex flex-col space-y-5">
@@ -67,7 +68,7 @@ const Login = ({setLoggedIn}) => {
                      
                     </div>
                 </div>
-                <button type="submit" class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                <button type="submit" class="w-full py-3 font-medium text-white  rounded-lg  hover:shadow inline-flex space-x-2 items-center justify-center" style={{background:'#FDBA74'}}>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                       </svg>

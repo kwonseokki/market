@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { category } from "../assets/category";
-import { location } from "../assets/category";
+import { locations } from "../assets/category";
 
 const EditPage = ({match}) => {
     const docId = match.params.docid;
@@ -29,7 +29,7 @@ const EditPage = ({match}) => {
     {/* location */}
     <label for="default" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">거래지역</label>
 <select  id="default" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  {location.map(value=>(
+  {locations.map(value=>(
       <option>{value}</option>
   ))}
 </select>

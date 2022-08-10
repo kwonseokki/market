@@ -1,6 +1,6 @@
 import React from "react";
 import '../components/style/upload.scss';
-import { category, location,  } from "../assets/category";
+import { category, locations } from "../assets/category";
 const Upload = ({onChange, onSubmit, selecteImage}) => {
   return (
     <div className="item-container container product-upload">
@@ -24,7 +24,7 @@ const Upload = ({onChange, onSubmit, selecteImage}) => {
     {/* location */}
     <label for="default" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">거래지역</label>
 <select onChange={(e)=>onChange(e)} id="default" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  {location.map(value=>(
+  {locations.map(value=>(
       <option>{value}</option>
   ))}
 </select>
@@ -103,7 +103,7 @@ const Upload = ({onChange, onSubmit, selecteImage}) => {
 <input onChange={(e)=>{selecteImage(e)}} class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file"/>
 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
 
-<button type="submit" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">상품올리기</button>
+<button type="submit" class="text-white focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900" style={{background:'#FDBA74'}}>상품올리기</button>
    </form>
     </div>
 

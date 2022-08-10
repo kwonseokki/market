@@ -7,4 +7,18 @@ import Register from "./Register";
 import NavigationBar from "./NavigationBar";
 import ChatRooms from "./ChatRooms";
 import ChatRoom from "./ChatRoom";
-export { Header, ProductItem, PageNotFound, ProductDetail, Login, Register, NavigationBar, ChatRooms, ChatRoom};
+import Loading from "./Loading";
+import MyPage from "./MyPage";
+export {
+  Header,
+  ProductItem,
+  PageNotFound,
+  ProductDetail,
+  Login,
+  Register,
+  NavigationBar,
+  ChatRooms,
+  ChatRoom,
+  Loading,
+  MyPage
+};
