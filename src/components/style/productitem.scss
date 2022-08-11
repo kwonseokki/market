@@ -4,61 +4,70 @@
 
 .product-container {
 
-.product-item-container {
-    width: 100%;
-    height: 135px;
-    display: flex;
-    overflow: hidden;
-    border-radius:10px;
-    &:first-child {
-        margin-top: 10px;
-    }
-
-    &+& {
-        margin-top: 10px;
-    }
-
-    &:hover {
-        background:rgba(0,0,0,0.1);
-        cursor:pointer;
-    }
-
-    .product-item-image {
-        width: 135px;
+    .product-item-container {
+        width: 100%;
         height: 135px;
-        padding: 10px;
-        max-height: 250px;
         display: flex;
-        overflow:hidden;
-        img {
-            width: 100%;
-            height:100%;
-            border-radius:10px;
+        overflow: hidden;
+        border-radius: 10px;
+
+        &:first-child {
+            margin-top: 10px;
         }
 
-    }
+        &+& {
+            margin-top: 10px;
+        }
 
-    .product-item-text {
-        position: relative;
-        height: 100%;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        h5 {padding-bottom:10px;}
-        span {padding-bottom:10px;}
-        .product-item-location {
-            font-size:0.8rem;
-            color:gray;
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .product-item-image {
+            width: 135px;
+            height: 135px;
+            padding: 10px;
+            max-height: 250px;
+            display: flex;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+
+        }
+
+        .product-item-text {
+            position: relative;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h5 {
+                padding-bottom: 10px;
+            }
+
+            span {
+                padding-bottom: 10px;
+            }
+
+            .product-item-location {
+                font-size: 0.8rem;
+                color: gray;
+            }
+        }
+
+        .product-item-icons {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            align-items: center;
         }
     }
-
-    .product-item-icons {
-        position:absolute;
-        right:10px;
-        bottom:10px;
-        display: flex;
-        align-items: center;
-    }
-}
 }

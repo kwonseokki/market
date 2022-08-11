@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useInput(initialForm, deps = []) {
     const [form, setForm] =useState(initialForm);
@@ -14,7 +14,6 @@ export function useInput(initialForm, deps = []) {
     }
 
     useEffect(()=>{
-        console.log(1);
     }, deps)
 
     return [form, onChange, reset]

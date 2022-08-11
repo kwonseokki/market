@@ -3,7 +3,6 @@ import authReducer from "./authUser";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-
 const persistConfig = {
   key: "root",
   // localStorage에 저장합니다.
@@ -14,9 +13,9 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    authReducer,
-  });
-  
+  authReducer,
+});
+
 const rootReducerPersist = persistReducer(persistConfig, rootReducer);
 
-export {rootReducerPersist}
+export { rootReducerPersist };

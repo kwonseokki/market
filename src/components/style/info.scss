@@ -1,0 +1,23 @@
+.item-container {
+    .mypage-container {
+        .mypage-title {
+            text-align:left;
+            margin-bottom:0;
+            font-weight:bold;
+        }
+        .mypage-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            .mypage-icon {
+                color: #222222;
+                text-decoration: none;
+
+                &:hover {
+                    color: #FDBA74;
+                }
+            }
+        }
+    }
+}

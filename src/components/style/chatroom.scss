@@ -1,16 +1,17 @@
 .item-container {
 
     .chatroom-start-text {
-        display:block;
-        margin-top:10px;
-        display:flex;
-        justify-content:space-around;
+        display: block;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+
         span {
-            padding:5px 10px;
-            background:lightgray;
-            border-radius:20px;
-            font-size:0.8rem;
-            color:white
+            padding: 5px 10px;
+            background: lightgray;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: white
         }
     }
 
@@ -26,8 +27,9 @@
     }
 
     .chatroom-message-container {
-        li {
+        padding: 10px;
 
+        li {
             margin-top: 10px;
 
 

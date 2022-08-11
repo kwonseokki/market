@@ -1,22 +1,23 @@
 .antialiased {
     .register-text {
-        text-align:left;
+        text-align: left;
     }
 
     .profile-image {
         p {
             span {
-                font-size:0.7rem;
-                color:gray;
+                font-size: 0.7rem;
+                color: gray;
             }
         }
+
         .user-image {
-           width:150px;
-           height:150px;
-           border-radius:50%;
-           margin:15px auto;
-           background-size:cover !important;
-           background-repeat:no-repeat !important;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 15px auto;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
         }
     }
 }

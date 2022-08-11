@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style/chatroom.scss";
 import { sendChatMessage, snapShotChat } from "../lib/api";
 import { useSelector } from "react-redux";
+
 const ChatRoom = ({ props }) => {
-  console.log(props);
   const chatId = props.match.params.docid;
   const state = useSelector((state) => state.authReducer);
   const { uid } = state;
@@ -21,10 +21,10 @@ const ChatRoom = ({ props }) => {
     <div className="item-container">
      <span className="chatroom-start-text"><span>채팅을 시작합니다.</span></span>
     <ul className="chatroom-message-container">
-        {chatData !== undefined && chatData.map((chat) => (
+        {chatData !== undefined && chatData.map((chat, index) => (
          uid === chat.uid ? 
-         <li className="message-right"><span className="chatroom-message">{chat.message}</span></li> :
-         <li className="message-left"><span className="chatroom-message">{chat.message}</span></li>
+         <li className="message-right"><span className="chatroom-message" key={index}>{chat.message}</span></li> :
+         <li className="message-left"><span className="chatroom-message" key={index}>{chat.message}</span></li>
         ))}
       </ul>
       

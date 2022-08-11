@@ -5,6 +5,7 @@ import { signUp } from "../modules/auth";
 import { useHistory } from "react-router-dom";
 import noUserImage from "../assets/no-user-image.png";
 import { getUrl } from "../lib/api";
+import Loading from "./Loading";
 const Register = () => {
   const [form, onChange, reset] = useInput({
     email: "",
@@ -16,7 +17,8 @@ const Register = () => {
   const history = useHistory();
   const [userImage, setUserImage] = useState(noUserImage);
   const [url, setUrl] = useState();
-  console.log(form);
+  const [loading, setLoading] = useState(false);
+  
   // 유효성 체크
   const memberRegisterCheck = useCallback((form) => {
     const { email, password, name, password_check } = form;
@@ -42,9 +44,9 @@ const Register = () => {
     return true;
   }, []);
 
-  const onSeletUserImage = e => {
-    // 업로드사진 미리보기  
-    let file = e.target.files; 
+  const onSeletUserImage = (e) => {
+    // 업로드사진 미리보기
+    let file = e.target.files;
     let storageUrl = e.target.files[0];
     let url = URL.createObjectURL(file[0]);
     setUserImage(url);
@@ -52,37 +54,39 @@ const Register = () => {
   };
 
   const onMemberRegister = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    const memberCheckResult =  memberRegisterCheck(form);
+    const memberCheckResult = memberRegisterCheck(form);
     if (memberCheckResult) {
       try {
-        const urlResopone = await getUrl(url, 'user/');  
-        await signUp({...form, url:urlResopone});
+        const urlResopone = await getUrl(url, "user/");
+        await signUp({ ...form, url: urlResopone });
         history.push("/login");
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     }
   };
-
+  if (loading) return <Loading message={"회원가입 처리중입니다."} />;
   return (
     <div className="item-container">
-      <body class="antialiased">
-        <div class="max-w-lg mx-auto  bg-white p-8 rounded-xl">
-          <h1 class="text-4xl font-medium">회원가입</h1>
+      <body className="antialiased">
+        <div className="max-w-lg mx-auto  bg-white p-8 rounded-xl">
+          <h1 className="text-4xl font-medium">회원가입</h1>
           {msg}
-          <p class="text-slate-500"></p>
+          <p className="text-slate-500"></p>
 
           <form
             action=""
-            class="my-10"
+            className="my-10"
             onSubmit={(e) => {
               onMemberRegister(e);
             }}
           >
-            <div class="flex flex-col space-y-5">
+            <div className="flex flex-col space-y-5">
               <label for="email">
-                <p class="font-medium register-text text-slate-700 pb-2">
+                <p className="font-medium register-text text-slate-700 pb-2">
                   닉네임
                 </p>
                 <input
@@ -92,13 +96,13 @@ const Register = () => {
                   id="email"
                   name="name"
                   type="text"
-                  class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                  className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                   placeholder="이메일을 입력해주세요."
                   required
                 />
               </label>
               <label for="email">
-                <p class="font-medium register-text text-slate-700 pb-2">
+                <p className="font-medium register-text text-slate-700 pb-2">
                   Email
                 </p>
                 <input
@@ -108,13 +112,13 @@ const Register = () => {
                   id="email"
                   name="email"
                   type="email"
-                  class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                  className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                   placeholder="이메일을 입력해주세요."
                   required
                 />
               </label>
               <label for="password">
-                <p class="font-medium register-text text-slate-700 pb-2">
+                <p className="font-medium register-text text-slate-700 pb-2">
                   비밀번호
                 </p>
                 <input
@@ -124,14 +128,14 @@ const Register = () => {
                   id="password"
                   name="password"
                   type="password"
-                  class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                  className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                   placeholder="비밀번호를 입력해주세요."
                   required
                 />
               </label>
 
               <label for="password">
-                <p class="font-medium register-text text-slate-700 pb-2">
+                <p className="font-medium register-text text-slate-700 pb-2">
                   비밀번호 확인
                 </p>
                 <input
@@ -141,14 +145,14 @@ const Register = () => {
                   id="password"
                   name="password_check"
                   type="password"
-                  class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                  className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
                   placeholder="비밀번호를 입력해주세요."
                   required
                 />
               </label>
 
               <div className="profile-image">
-                <p class="font-medium register-text text-slate-700 pb-2">
+                <p className="font-medium register-text text-slate-700 pb-2">
                   프로필 이미지<span> 필수 선택사항이 아닙니다.</span>
                 </p>
                 <label
@@ -156,21 +160,27 @@ const Register = () => {
                   className="user-image"
                   style={{ background: `url(${userImage}) center center` }}
                 ></label>
-                <input onChange={(e)=>{onSeletUserImage(e)}} id="user-image" type="file" />
+                <input
+                  onChange={(e) => {
+                    onSeletUserImage(e);
+                  }}
+                  id="user-image"
+                  type="file"
+                />
               </div>
 
-              <div class="flex flex-row justify-between">
+              <div className="flex flex-row justify-between">
                 <div></div>
                 <div></div>
               </div>
               <button
                 type="sumbit"
-                class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                 style={{ background: "#FDBA74" }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

@@ -3,34 +3,44 @@ import { useFetch } from "../hooks/useAsync";
 import { queryData } from "../lib/api";
 import { Loading } from "../components";
 import { ProductItem } from "../components";
-import '../components/style/search.scss';
+import "../components/style/search.scss";
 import { useHistory } from "react-router-dom";
 const Search = () => {
   const [value, setValue] = useState();
   const [isSearch, setIsSearch] = useState(false);
   const history = useHistory();
-  const [state] = useFetch(queryData('product', {
-    filed:'title',
-    operator:'==',
-    value:value
-  }), [isSearch]);
+  const [state] = useFetch(
+    queryData("product", {
+      filed: "title",
+      operator: "==",
+      value: value,
+    }),
+    [isSearch]
+  );
   const { loading, error, data } = state;
-
-  if(loading) return (<Loading message={'상품정보 가져오는중'}/>);
- 
+  
+  if (loading) return <Loading message={"상품정보 가져오는중"} />;
+  
   return (
     <div className="item-container container">
-    
-      <form onSubmit={(e)=>{e.preventDefault(); setIsSearch(!isSearch)}}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setIsSearch(!isSearch);
+        }}
+      >
         <label
           for="default-search"
-          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
         ></label>
-        <div class="relative">
-          <div class="flex absolute inset-y-0  items-center pl-3 pointer-events-none" style={{left:'150px'}}>
+        <div className="relative">
+          <div
+            className="flex absolute inset-y-0  items-center pl-3 pointer-events-none"
+        
+          >
             <svg
               aria-hidden="true"
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -45,11 +55,12 @@ const Search = () => {
             </svg>
           </div>
           <input
-          onChange={(e)=>{setValue(e.target.value)}}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
             type="search"
             id="default-search"
-            class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:text-white"
-            placeholder="상품명을 검색해주세요"
+            className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:text-white"
             required
           />
           <button
@@ -61,12 +72,21 @@ const Search = () => {
           </button>
         </div>
       </form>
-  
+
       <ul className="search-list">
-      {data && data.map(product=>(
-       <span onClick={()=>{history.push(`/detail/${product.id}`)}}><ProductItem  product={product}/></span> 
-      ))}
-  
+        {data === null && <div className="search-result">검색을 해주세요</div>}
+        {data && data.length == 0 && <div className="search-result">검색결과가 존재하지 않습니다.</div>}
+        {data && data.length >= 1 && <div className="search-result">{data.length}건의 검색결과가 있습니다.</div>}
+        {data &&
+          data.map((product , index) => (
+            <span key={index}
+              onClick={() => {
+                history.push(`/detail/${product.id}`);
+              }}
+            >
+              <ProductItem product={product} />
+            </span>
+          ))}
       </ul>
     </div>
   );

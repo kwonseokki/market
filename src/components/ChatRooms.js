@@ -26,17 +26,18 @@ const ChatRooms = ({ chatRoom, uid }) => {
           props:user
         });
       }}
-      className="grid grid-cols-6 gap-y-2 p-2.5 container"
+      className="grid grid-cols-6 gap-y-2 p-2.5 container" style={{borderBottom:'1px solid lightgray'}}
     >
       <div>
-        <img src={noUserImage} class="max-w-16 max-h-16 rounded-full" />
+        <img src={noUserImage} className="max-w-16 max-h-16 rounded-full" />
       </div>
 
-      <div class="col-span-5 md:col-span-4 ml-4 text-left">
-        <p class="text-gray-600 font-bold mb-1"> {user && user[0].name} </p>
+      <div className="col-span-5 md:col-span-4 ml-4 text-left" style={{display:'flex', alignItems:'center'}}>
+        <p className="text-gray-600 font-bold mb-1"> {user && user[0].name} </p>
 
-        <p class="text-gray-400">최근메세지</p>
+        <p className="text-gray-400"></p>
       </div>
+    
     </div>
   );
 };

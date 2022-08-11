@@ -3,11 +3,9 @@ import { ChatRooms } from "../components";
 import { queryData } from "../lib/api";
 import { useFetch } from "../hooks/useAsync";
 import { Loading } from "../components";
-import { PageRock } from "../components";
+import { PageLock } from "../components";
 
 const MyChat = ({ uid }) => {
-
-
   const [state] = useFetch(
     queryData("chatroom", {
       filed: "who",
@@ -17,15 +15,15 @@ const MyChat = ({ uid }) => {
     []
   );
   const { loading, error, data } = state;
-  if(!uid) return (<PageRock/>);
-  if (loading) return <Loading message={'채팅방 목록 로딩중'}/>;
+  if (!uid) return <PageLock />;
+  if (loading) return <Loading message={"채팅방 목록 로딩중"} />;
   if (error) return <div>에러</div>;
   if (!data) return <div>데이터없음</div>;
   if (data.length == 0) return <div>채팅방 데이터 없음</div>;
   return (
-    <div >
-      {data.map((chatRoom) => (
-        <ChatRooms chatRoom={chatRoom} uid={uid}/>
+    <div>
+      {data.map((chatRoom, index) => (
+        <ChatRooms key={index} chatRoom={chatRoom} uid={uid} />
       ))}
     </div>
   );

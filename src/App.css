@@ -2,37 +2,40 @@
   text-align: center;
   position: relative;
   max-width: 425px;
-  height:100vh;
+  height: 100vh;
   margin: 0 auto;
 }
 
-Link{outline:0; text-decoration:none;}
-
-
-
-.item-container {
-  height:calc( 100vh - 112px );
-  overflow-y:scroll;
-  margin:0 20px;
+Link {
+  outline: 0;
+  text-decoration: none;
 }
 
-
+.item-container {
+  height: calc(100vh - 112px);
+  overflow-y: scroll;
+  margin: 0 20px;
+}
 
 /* 아래의 모든 코드는 영역::코드로 사용 */
 
 .item-container::-webkit-scrollbar {
-    width: 7px;  /* 스크롤바의 너비 */
+  width: 7px;
+  /* 스크롤바의 너비 */
 }
 
 .item-container::-webkit-scrollbar-thumb {
-    height: 10%; /* 스크롤바의 길이 */
-    background: #FDBA74; /* 스크롤바의 색상 */
-    
-    border-radius: 10px;
+  height: 10%;
+  /* 스크롤바의 길이 */
+  background: #FDBA74;
+  /* 스크롤바의 색상 */
+
+  border-radius: 10px;
 }
 
 .item-container::-webkit-scrollbar-track {
-    background: rgba(255, 180, 41, 0.1);  /*스크롤바 뒷 배경 색상*/
+  background: rgba(255, 180, 41, 0.1);
+  /*스크롤바 뒷 배경 색상*/
 }
 
 .App-logo {
@@ -41,9 +44,9 @@ Link{outline:0; text-decoration:none;}
 }
 
 .move-upload-page {
-  position:fixed;
-  right:10px;
-  bottom:10px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -71,6 +74,7 @@ Link{outline:0; text-decoration:none;}
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

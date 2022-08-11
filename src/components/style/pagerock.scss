@@ -1,16 +1,18 @@
 .item-container {
-    position:relative;
+    position: relative;
+
     .pagelock-item {
-        position:absolute;
-        left:50%;
-        top:50%;
-        transform:translate(-50%, -50%);
-        display:flex;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
         flex-direction: column;
         align-items: center;
+
         span {
-            color:gray;
-            font-size:0.8rem;
+            color: gray;
+            font-size: 0.8rem;
         }
     }
 }

@@ -1,11 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');.header-container {
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+.header-container {
+
     height: 56px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     .header-logo {
         font-family: 'Jua', sans-serif;
-        color:#FDBA74;
-        font-size:1.2rem;
+        color: #FDBA74;
+        font-size: 1.2rem;
+    }
+
+    .navigation-title {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+
+        span {
+            padding-left: 5px;
+        }
     }
 }

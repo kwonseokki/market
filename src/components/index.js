@@ -9,7 +9,7 @@ import ChatRooms from "./ChatRooms";
 import ChatRoom from "./ChatRoom";
 import Loading from "./Loading";
 import MyPage from "./MyPage";
-import PageRock from './PageLock';
+import PageLock from './PageLock';
 export {
   Header,
   ProductItem,
@@ -22,5 +22,5 @@ export {
   ChatRoom,
   Loading,
   MyPage,
-  PageRock
+  PageLock
 };
